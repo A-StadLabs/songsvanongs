@@ -12,11 +12,14 @@
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../elements/asl-songadder/asl-songadder.html">
 <link rel="import" href="../../elements/asl-songs/asl-songs.html">
+<link rel="import" href="../../elements/our-playbutton/our-playbutton.html">
+
 
 <!-- Get Polymer element started. -->
 <polymer-element name="asl-songsvanongs" attributes="">
   <template>
     <link rel="stylesheet" href="asl-songsvanongs.css">
+    <audio id="audioElement" autoplay="true" controls flex src=""></audio>
     <core-drawer-panel id="panel">
       <div drawer class="drawer">
           <div class="drawerinside">
@@ -27,7 +30,8 @@
 
       <p class="red">Antwerpse bands, MC's en andere stadsgeluiden.</p>
       
-      <p class="white">Jouw song <a class="white" href="https://www.twitter.com/astadlabs">@astadlabs</a></span></p>
+      <p class="white"><a class="white" href="/#editor">Voeg jouw song toe</a></p>
+      <p class="white">Feedback? <a class="white" href="https://www.twitter.com/astadlabs">@astadlabs</a></span></p>
       <a href="https://github.com/A-StadLabs/arad-xmix3" target="blank"><img src="/GitHub-Mark-Light-32px.png" border="0"></a>
 
     </div>
@@ -35,16 +39,20 @@
       <div main>
         <core-header-panel mode="seamed">
           <core-toolbar>
-            <core-icon-button icon="menu" on-tap="{{togglePanel}}"></core-icon-button>
-            <audio id="audioElement" flex autoplay="true" src=""></audio>
+            <core-icon-button class="button" icon="menu" on-tap="{{togglePanel}}"></core-icon-button>
+            
             <h1 flex></h1>
-            <core-icon-button icon="{{ playingSong ? 'av:pause' : 'av:play-arrow'}}" on-tap="{{playPauseToggle}}"></core-icon-button>
+            <our-playbutton
+      id="playButton" 
+      playingSong="{{ playingSong }}"
+      on-stop="{{ stopButtonHandler }}"
+      on-play="{{ playButtonHandler }}"></our-playbutton>
             <core-icon-button icon="av:fast-forward" on-tap="{{nextToggle}}"></core-icon-button>
           </core-toolbar>
           <!-- 'pages' -->
           <flatiron-director route="{{route}}" autoHash></flatiron-director>
           <core-animated-pages selected="{{route}}" valueattr="route">
-            <section route="one">
+            <section route="">
               <asl-songs id="songplaylist" currentSongID=""></asl-songs>
             </section>
             <section route="editor">
@@ -57,19 +65,29 @@
     </core-drawer-panel>
   </template>
   <script>
+
+
+
     (function () {
       'use strict';
 
       Polymer('asl-songsvanongs',{
         ready: function(){
 
-        this.route = 'one';
+
+
+        this.route = '';
 
         var that = this;
         that.playingSong = false;
 
         this.$.songplaylist.addEventListener('setSong', function(e){
           that.$.audioElement.src = e.detail.msg.songurl;
+          console.log('kan ik iets in ios console zien?');
+        });
+
+        this.$.audioElement.addEventListener('can-play', function(){
+            console.log('ok kan starten.');
         });
 
         this.$.audioElement.addEventListener('ended', function(){
@@ -103,15 +121,31 @@
           this.$.songplaylist.nextSong();
         },
 
-        playPauseToggle: function(){
-          var that = this;
-          if(that.playingSong == true){
-          //this.$.audioElement.play();
-          this.$.audioElement.pause();
-        } else {
-          this.$.audioElement.play();
-        };
-        }
+        // playPauseToggle: function(){
+        //   var that = this;
+        //   that.$.audioElement.play();
+          
+        //   if(that.playingSong == true){
+        //   //this.$.audioElement.play();
+        //   that.$.audioElement.pause();
+        // } else {
+        //   that.$.audioElement.play();
+        // };
+        // }
+
+        playButtonHandler: function(){
+      if(this.playingSong==false){
+      this.$.audioElement.play();
+      this.playingSong = true;
+    } 
+    },
+
+    stopButtonHandler: function(){
+      if(!this.playingSong) return;
+    this.playingSong  = false;
+    this.$.audioElement.pause();
+
+    },
 
 
 

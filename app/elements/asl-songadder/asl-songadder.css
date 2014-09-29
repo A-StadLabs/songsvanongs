@@ -1,5 +1,7 @@
 :host {
   display: block;
+  background-color: white !important;
+  height: 100%;
 }
 
 h1 {padding: 0px 0px 0px 10px;}
@@ -13,4 +15,8 @@ core-field {
 }
 paper-checkbox {
       padding: 20px 20px 20px 0;
+}
+
+.white {
+	color: white;
 }

@@ -24,12 +24,10 @@
 
           var that = this;
 
-          //this.keys = this.shuffleThis(this.keys);
 
           this.$.songselector.addEventListener('core-select', function(e){
             this.fire('setSong', { msg: this.selected });
             that.currentSongID = e.detail.item.songid;
-            //console.log('geselecteerd: ', e.detail.item.songid);
 
           });
         },
