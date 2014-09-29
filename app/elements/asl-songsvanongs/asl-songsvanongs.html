@@ -33,19 +33,19 @@
     </div>
       </div>
       <div main>
-        <core-header-panel>
+        <core-header-panel mode="seamed">
           <core-toolbar>
             <core-icon-button icon="menu" on-tap="{{togglePanel}}"></core-icon-button>
-            <audio id="audioElement" flex autoplay="true" src="" controls="true"></audio>
-            <core-icon-button icon="av:shuffle" on-tap="{{shuffleToggle}}"></core-icon-button>
-            <core-icon-button icon="av:pause" on-tap="{{playPauseToggle}}"></core-icon-button>
+            <audio id="audioElement" flex autoplay="true" src=""></audio>
+            <h1 flex></h1>
+            <core-icon-button icon="{{ playingSong ? 'av:pause' : 'av:play-arrow'}}" on-tap="{{playPauseToggle}}"></core-icon-button>
             <core-icon-button icon="av:fast-forward" on-tap="{{nextToggle}}"></core-icon-button>
           </core-toolbar>
           <!-- 'pages' -->
           <flatiron-director route="{{route}}" autoHash></flatiron-director>
           <core-animated-pages selected="{{route}}" valueattr="route">
             <section route="one">
-              <asl-songs id="songplaylist"></asl-songs>
+              <asl-songs id="songplaylist" currentSongID=""></asl-songs>
             </section>
             <section route="editor">
               <asl-songadder></asl-songadder>
@@ -62,24 +62,55 @@
 
       Polymer('asl-songsvanongs',{
         ready: function(){
+
         this.route = 'one';
+
         var that = this;
+        that.playingSong = false;
+
         this.$.songplaylist.addEventListener('setSong', function(e){
-          console.log('selectedsong: ', e.detail.msg.songurl); 
           that.$.audioElement.src = e.detail.msg.songurl;
         });
+
+        this.$.audioElement.addEventListener('ended', function(){
+          console.log('het liedje is gedaan: ', that.$.songplaylist.currentSongID);
+
+          var addPlay = new Firebase('https://songsvanongs.firebaseio.com/songs/'+that.$.songplaylist.currentSongID+'/plays');
+
+            addPlay.transaction(function(currentRank) {
+                   // If /users/fred/rank has never been set, currentRank will be null.
+                  return currentRank+1;
+                });
+            that.nextToggle();
+        });
+
+        this.$.audioElement.addEventListener('playing', function(){
+          that.playingSong = true;
+          console.log('nu speelt: ',that.$.songplaylist.currentSongID);
+        });
+
+        this.$.audioElement.addEventListener('pause', function(){
+          that.playingSong = false;
+        });
+
       },
-        // define element prototype here
+
         togglePanel: function(){
           this.$.panel.togglePanel();
         },
 
-        shuffleToggle: function(){
-          this.$.songplaylist.shuffle();
-        },
-
         nextToggle: function(){
           this.$.songplaylist.nextSong();
+        },
+
+        playPauseToggle: function(){
+          var that = this;
+          if(that.playingSong == true){
+          //this.$.audioElement.play();
+          this.$.audioElement.pause();
+        } else {
+          this.$.audioElement.play();
+        };
         }
 
 
