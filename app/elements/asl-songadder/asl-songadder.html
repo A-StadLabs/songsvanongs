@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-field/core-field.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/core-animated-pages/core-animated-pages.html">
+
+<polymer-element name="asl-songadder" attributes="">
+  <template>
+    <link rel="stylesheet" href="asl-songadder.css">
+
+    <core-ajax method="POST" on-core-response="{{response}}" id="songPost" handleAs="json" data url="https://songsvanongs.firebaseio.com/songs/.json"></core-ajax>
+
+    <h1>Jouw Song van Ongs</h1>
+
+    <core-animated-pages id="pages">
+    <section>
+    <p>Voeg jouw song toe aan Songs van Ongs. Je bezit wel de juiste toestemmingen of rechten. Een song laten verwijderen kan via @astadlabs.</p>
+    <core-field>
+      <paper-input placeholder="Titel" required flex value="{{songtitle}}"></paper-input>
+    </core-field>
+    <core-field>
+      <paper-input placeholder="Artiest" required flex value="{{songartist}}"></paper-input>
+    </core-field>
+    <core-field>
+      <paper-input placeholder="MP3 URL" required flex value="{{songurl}}"></paper-input>
+    </core-field>
+    <core-field>
+      <paper-checkbox id="check" required label="Ik heb toestemming van de uitvoerder om {{songtitle}} van {{songartist}} in Songs van Ongs te plaatsen."></paper-checkbox>
+    </core-field>
+    <core-field vertical layout>
+      <paper-button id="button" center-justified icon="arrow-forward" on-tap="{{submit}}">Toevoegen</paper-button>
+    </core-field>
+    </section>
+    <section>
+      <p>Jouw song werd toegevoegd aan Songs van Ongs.</p>
+      <h1>{{songid}}</h1>
+      <paper-button id="button" center-justified icon="arrow-forward" on-tap="{{newentry}}">Nog een song toevoegen</paper-button>
+    </section>
+    </core-animated-pages>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        ready: function(){
+          this.songtitle = '';
+          this.songartist = '';
+          //this.$.button.disabled = true;
+        },
+
+        submit: function(){
+          var that = this;
+          this.body = { 'songtitle': this.songtitle, 'songartist': this.songartist, 'songurl': this.songurl, 'plays': 0 };
+          this.body = JSON.stringify(this.body);
+          that.$.songPost.body = this.body;
+          that.$.songPost.go();
+        },
+
+        response: function(e){
+          console.log('response: ', e.detail.response.name);
+          this.songid = e.detail.response.name;
+          this.$.pages.selected++;
+        },
+
+        newentry: function(){
+          var that = this;
+          this.songtitle = '';
+          this.songartist = '';
+          this.songurl = '';
+          that.$.check.checked = false;
+          that.$.pages.selected--;
+        }
+        // define element prototype here
+      });
+
+    })();
+  </script>
+</polymer-element>

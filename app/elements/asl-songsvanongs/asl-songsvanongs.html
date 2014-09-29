@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- Let's bring in some elements. -->
+<link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../../bower_components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../bower_components/core-icons/av-icons.html">
+
+<link rel="import" href="../../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../../bower_components/flatiron-director/flatiron-director.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
+<link rel="import" href="../../elements/asl-songadder/asl-songadder.html">
+<link rel="import" href="../../elements/asl-songs/asl-songs.html">
+
+<!-- Get Polymer element started. -->
+<polymer-element name="asl-songsvanongs" attributes="">
+  <template>
+    <link rel="stylesheet" href="asl-songsvanongs.css">
+    <core-drawer-panel id="panel">
+      <div drawer class="drawer">
+          <div class="drawerinside">
+      
+      <h1 class="white">Songs<br />&nbsp;&nbsp;v<span class="red">a</span>n Ongs</h1>
+      <h4 class="css3-blink">A-StadLabs Experiment</h4>
+            <h2 class="white">1 play/ 1 vote.</h2>
+
+      <p class="red">Antwerpse bands, MC's en andere stadsgeluiden.</p>
+      
+      <p class="white">Jouw song <a class="white" href="https://www.twitter.com/astadlabs">@astadlabs</a></span></p>
+      <a href="https://github.com/A-StadLabs/arad-xmix3" target="blank"><img src="/GitHub-Mark-Light-32px.png" border="0"></a>
+
+    </div>
+      </div>
+      <div main>
+        <core-header-panel>
+          <core-toolbar>
+            <core-icon-button icon="menu" on-tap="{{togglePanel}}"></core-icon-button>
+            <audio id="audioElement" flex autoplay="true" src="" controls="true"></audio>
+            <core-icon-button icon="av:shuffle" on-tap="{{shuffleToggle}}"></core-icon-button>
+            <core-icon-button icon="av:pause" on-tap="{{playPauseToggle}}"></core-icon-button>
+            <core-icon-button icon="av:fast-forward" on-tap="{{nextToggle}}"></core-icon-button>
+          </core-toolbar>
+          <!-- 'pages' -->
+          <flatiron-director route="{{route}}" autoHash></flatiron-director>
+          <core-animated-pages selected="{{route}}" valueattr="route">
+            <section route="one">
+              <asl-songs id="songplaylist"></asl-songs>
+            </section>
+            <section route="editor">
+              <asl-songadder></asl-songadder>
+            </section>
+          </core-animated-pages>
+          <!-- :'pages' -->
+        </core-header-panel>
+      </div>
+    </core-drawer-panel>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer('asl-songsvanongs',{
+        ready: function(){
+        this.route = 'one';
+        var that = this;
+        this.$.songplaylist.addEventListener('setSong', function(e){
+          console.log('selectedsong: ', e.detail.msg.songurl); 
+          that.$.audioElement.src = e.detail.msg.songurl;
+        });
+      },
+        // define element prototype here
+        togglePanel: function(){
+          this.$.panel.togglePanel();
+        },
+
+        shuffleToggle: function(){
+          this.$.songplaylist.shuffle();
+        },
+
+        nextToggle: function(){
+          this.$.songplaylist.nextSong();
+        }
+
+
+
+      });
+
+    })();
+  </script>
+</polymer-element>

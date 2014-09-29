@@ -1,0 +1,200 @@
+:host {
+		background-color: #E4534F !important;
+		cursor: default;
+}
+
+.black {
+	color: black;
+}
+
+.red {
+	color: #e55253;
+}
+
+/* !!! RESPONSIVE: vanaf 480px;*/ 
+
+@media screen and (max-width:480px) {
+
+
+:host {
+	font-size: 26px;
+	font-weight: 200;
+	display: block;
+	padding: 2% 4% 2% 4%;
+	border-bottom: 1px solid #db4f4f;
+
+}
+
+
+
+span.artist-title {
+	color: white;
+	white-space: normal;
+	font-size: 0.75em;
+	display: block;
+  	-webkit-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+  	line-height: 80%;
+  		font-weight: 400;
+
+
+	}
+
+
+span.plays {
+		color: black;
+	}
+
+
+
+
+
+:host([active]) {
+	background-color: white;
+	padding-top: 2%;
+	padding-bottom: 2%;
+
+	}
+
+
+:host([active]) span.artist-title {
+	color: black;
+	font-size: 0.85em;
+	font-weight: 600;
+	white-space: normal;
+	line-height: 90%;
+
+    }
+
+:host([active]) span.plays {
+	color: #e55253;
+	}
+
+}
+
+
+
+
+
+
+/* !!!!!!!!!!!!!!!!!! RESPONSIVE: vanaf 768px; */
+
+@media screen and (min-width:321px) and (max-width:768px) {
+
+	:host {
+	font-size: 26px;
+	font-weight: 200;
+	display: block;
+	height: 100%;
+	padding: 2% 4% 2% 4%;
+	border-bottom: 1px solid #db4f4f;
+
+}
+
+
+
+span.artist-title {
+	color: white;
+	white-space: normal;
+	font-size: 0.75em;
+  	-webkit-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+  	line-height: 90%;
+  		font-weight: 400;
+
+
+	}
+
+
+span.plays {
+	color: black;
+	}
+
+
+
+
+
+:host([active]) {
+	background-color: white;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	}
+
+
+:host([active]) span.artist-title {
+	color: black;
+	font-size: 0.85em;
+	font-weight: 600;
+	white-space: normal;
+    }
+
+:host([active]) span.plays {
+	color: #e55253;
+	}
+
+}
+
+
+
+
+
+
+/* !!!!!!!!!!!!!!!!!! RESPONSIVE: tussen 768px en 1580 px; */
+
+@media screen and (min-width:768px) and (max-width:1580px) {
+
+
+
+:host {
+	font-size: 26px;
+	font-weight: 200;
+	display: block;
+	height: 100%;
+	padding: 0.5% 2% 0.5% 2%;
+	border-bottom: 1px solid #db4f4f;
+
+}
+
+
+span.artist-title {
+	color: white;
+	white-space: normal;
+	font-weight: 400;
+ 	-moz-user-select: none;
+  	-webkit-user-select: none;
+  	-ms-user-select: none;
+	cursor: pointer;
+	line-height: 90%;
+	}
+
+
+span.plays {
+	color: black;
+	cursor: pointer;
+	}
+
+
+:host([active]) {
+	background-color: white;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	}
+
+
+:host([active]) span.artist-title {
+	color: black;
+	font-size: 1.3em;
+	font-weight: 600;
+
+	}
+
+:host([active]) span.plays {
+	color: #e55253;
+	}
+
+
+}

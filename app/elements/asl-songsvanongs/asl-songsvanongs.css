@@ -1,0 +1,79 @@
+:host {
+  display: block;
+   	height: 100%;
+ 	margin: 0;
+ 	background-color: #e55253;
+	font-family: 'Lato', sans-serif;
+	text-transform: uppercase;
+}
+
+html, body {
+height: 100%;
+}
+
+body {
+font-family: sans-serif;
+color: #FFF;
+margin: 0;
+}
+
+core-header-panel {
+height: 100%;	
+}
+
+[drawer] {
+background-color: #333333;
+}
+
+core-toolbar {
+background-color: #444444;
+color: white;
+}
+
+[main] {
+height: 100%;
+background-color: white;
+}
+
+
+core-drawer-panel[narrow] button {
+display: inline-block;
+}
+
+
+.drawer {
+	background-color: #444444;
+
+}
+
+.drawer h1 {
+	line-height: 90%;
+}
+
+.drawer h4 {
+	line-height: 0%;
+}
+
+.white {
+	color: white;
+}
+
+.red {
+  color: #e55253;
+}
+
+.drawerinside {
+	margin: 20px;
+}
+
+@-webkit-keyframes blinker {  
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
+}
+.css3-blink {
+  -webkit-animation-name: blinker;  
+  -webkit-animation-iteration-count: infinite;  
+  -webkit-animation-timing-function: cubic-bezier(1.0,0,1.0,1.0);
+  -webkit-animation-duration: 0.5s; 
+}			
+
