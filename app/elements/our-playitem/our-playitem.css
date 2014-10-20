@@ -11,11 +11,12 @@
 
 
 :host {
-	font-size: 26px;
+	font-size: 18px;
 	font-weight: 200;
 	display: block;
 	padding: 2% 4% 2% 4%;
 	border-bottom: 1px solid #db4f4f;
+	width: 100%;
 
 }
 
@@ -24,7 +25,6 @@
 .title {
 	color: white;
 	white-space: normal;
-	font-size: 0.75em;
 	display: block;
   	-webkit-user-select: none;
   	-moz-user-select: none;
@@ -32,26 +32,26 @@
   	user-select: none;
   	line-height: 100%;
   	font-weight: 400;
-
+  	width: 80%;
 	}
 
 
 .artist {
-		color: black;
-			display: block;
-
-			font-size: 0.75em;
-			  	font-weight: 400;
-
+	color: black;
+	display: block;
+	font-weight: 400;
+	  	width: 80%;
 }
 
 .plays {
-	color: white;
+	color: #A63B3C;
   	font-weight: 400;
-	font-size: 0.6em;
 	display: block;
-	margin-left: 10px;
-	opacity: 0.5;
+/*	opacity: 0.5;
+*/		font-size: 14px;
+			font-weight: 600;
+
+
 	}
 
 
@@ -68,33 +68,38 @@
 
 :host([active]) .title {
 	color: black;
-	font-size: 0.85em;
+	font-size: 30px;
+		display: block;
+
 	font-weight: 600;
 	white-space: normal;
 	line-height: 90%;
 
     }
 
-:host([active]) .artist {
+:host([active]) .plays {
 	color: #e55253;
+	opacity: 1;
+
 	}
 
 
 
 :host([active]) .artist {
-		color: #e55253;
-  	font-weight: 400;
-	font-size: 0.6em;
+	color: #e55253;
 	display: block;
-	margin-left: 10px;
-	opacity: 0.5;
+	font-size: 30px;
+	font-weight: 600;
+	white-space: normal;
+	line-height: 90%;
 	}
 
 
 .listenicon {
-	width: 15px;
-	height: 15px;
-	margin: 0px 0px -2px 2px;
-/*	background-color: black;
-*/}
+	margin: 0px 20px 0px 2px;
+}
+
+.breed {
+	width: 100%;
+}
 

@@ -7,10 +7,11 @@
     
 
     <core-item>
-    <div vertical layout start>
-
-    <div horizontal layout center class="title" >{{ song.songtitle }} <span class="plays">{{ song.plays }} <img class="listenicon" src="../../images/songsvanongs-02.svg"></span></div>  
+    <div vertical layout start class="breed">
+  <span class="plays" flex self-end>{{ song.plays }} <img class="listenicon" src="../../images/songsvanongs-02.svg"></span>
+    <div class="title" > {{ song.songtitle }} </div>  
     <div class="artist">{{ song.songartist }}</div>
+
     </div>
     </core-item>
 
