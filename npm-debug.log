@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/0.10.24/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'flatiron-director' ]
+2 info using npm@1.3.21
+3 info using node@v0.10.24
+4 warn package.json songsvanongs-v0-2@0.0.0 No description
+5 warn package.json songsvanongs-v0-2@0.0.0 No repository field.
+6 warn package.json songsvanongs-v0-2@0.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'flatiron-director', null ]
+9 verbose cache add name=undefined spec="flatiron-director" args=["flatiron-director",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'flatiron-director',
+10 verbose parsed url   path: 'flatiron-director',
+10 verbose parsed url   href: 'flatiron-director' }
+11 silly lockFile e3eedafb-flatiron-director flatiron-director
+12 verbose lock flatiron-director /Users/benadriaenssen/.npm/e3eedafb-flatiron-director.lock
+13 silly lockFile e3eedafb-flatiron-director flatiron-director
+14 silly lockFile e3eedafb-flatiron-director flatiron-director
+15 verbose addNamed [ 'flatiron-director', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 98b46689-flatiron-director flatiron-director@
+18 verbose lock flatiron-director@ /Users/benadriaenssen/.npm/98b46689-flatiron-director.lock
+19 silly addNameRange { name: 'flatiron-director', range: '*', hasData: false }
+20 verbose url raw flatiron-director
+21 verbose url resolving [ 'https://registry.npmjs.org/', './flatiron-director' ]
+22 verbose url resolved https://registry.npmjs.org/flatiron-director
+23 info trying registry request attempt 1 at 11:40:23
+24 http GET https://registry.npmjs.org/flatiron-director
+25 http 404 https://registry.npmjs.org/flatiron-director
+26 silly registry.get cb [ 404,
+26 silly registry.get   { date: 'Mon, 20 Oct 2014 09:40:25 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=0',
+26 silly registry.get     'content-length': '52',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-fra1229-FRA',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1413798024.429212,VS0,VE701',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly lockFile 98b46689-flatiron-director flatiron-director@
+28 silly lockFile 98b46689-flatiron-director flatiron-director@
+29 error 404 'flatiron-director' is not in the npm registry.
+29 error 404 You should bug the author to publish it
+29 error 404
+29 error 404 Note that you can also install from a
+29 error 404 tarball, folder, or http url, or git url.
+30 error System Darwin 13.4.0
+31 error command "/usr/local/Cellar/node/0.10.24/bin/node" "/usr/local/bin/npm" "install" "flatiron-director"
+32 error cwd /Users/benadriaenssen/Sites/songsvanongs
+33 error node -v v0.10.24
+34 error npm -v 1.3.21
+35 error code E404
+36 verbose exit [ 1, true ]

@@ -5,9 +5,13 @@
   <template>
   	<link rel="stylesheet" href="our-playitem.css">
     
-    <core-item horizontal layout>
-          <span class="artist-title" flex>{{ song.songtitle }}<br />
-          <span class="plays">{{ song.plays }} / {{ song.songartist }} </span>
+
+    <core-item>
+    <div vertical layout start>
+
+    <div horizontal layout center class="title" >{{ song.songtitle }} <span class="plays">{{ song.plays }} <img class="listenicon" src="../../images/songsvanongs-02.svg"></span></div>  
+    <div class="artist">{{ song.songartist }}</div>
+    </div>
     </core-item>
 
   </template>
