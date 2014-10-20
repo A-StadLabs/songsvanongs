@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../../elements/file-upload/file-upload.html">
 
 <polymer-element name="asl-songadder" attributes="">
   <template>
@@ -24,13 +25,14 @@
       <paper-input placeholder="Artiest" required flex value="{{songartist}}"></paper-input>
     </core-field>
     <core-field>
-      <paper-input placeholder="MP3 URL" required flex value="{{songurl}}"></paper-input>
+      <!-- <paper-input placeholder="MP3 URL" required flex value="{{songurl}}"></paper-input> -->
+      <file-upload imgval="{{songurl}}"></file-upload>
     </core-field>
     <core-field>
       <paper-checkbox id="check" required label="Ik heb toestemming van de uitvoerder om {{songtitle}} van {{songartist}} in Songs van Ongs te plaatsen."></paper-checkbox>
     </core-field>
     <core-field vertical layout>
-      <paper-button id="button" center-justified icon="arrow-forward" on-tap="{{submit}}">Toevoegen</paper-button>
+      <paper-button id="buttons" center-justified icon="arrow-forward" on-tap="{{submit}}">Toevoegen</paper-button>
     </core-field>
     </section>
     <section>
@@ -52,6 +54,7 @@
         },
 
         submit: function(){
+          this.$.buttons.disabled = true;
           var that = this;
           this.body = { 'songtitle': this.songtitle, 'songartist': this.songartist, 'songurl': this.songurl, 'plays': 0 };
           this.body = JSON.stringify(this.body);
@@ -66,6 +69,7 @@
         },
 
         newentry: function(){
+          this.$.buttons.disabled = false;
           var that = this;
           this.songtitle = '';
           this.songartist = '';
