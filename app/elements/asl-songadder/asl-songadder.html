@@ -12,35 +12,38 @@
     <link rel="stylesheet" href="asl-songadder.css">
 
     <core-ajax method="POST" on-core-response="{{response}}" id="songPost" handleAs="json" data url="https://songsvanongs.firebaseio.com/songs/.json"></core-ajax>
-    <a href="/#" class="white"><core-icon-button icon="close"></core-icon-button></a>
-    <h1>Jouw Song van Ongs</h1>
+<div vertical layout center center-justified class="canvas">
+<!--   <core-icon-button end-justified on-tap="" icon="close"></core-icon-button>
+ -->
+    <h1>JOUW SONG IN DEZE LIJST?</h1>
+    <input class="inputfield" placeholder="De titel van jouw song" required stretch value="{{songtitle}}"></input>
+    <input class="inputfield" placeholder="De naam van jouw band" required value="{{songartist}}"></input>
+    <file-upload imgval="{{songurl}}"></file-upload>
+    <paper-checkbox id="check" required label="Ik heb toestemming van de uitvoerder om {{songtitle}} van {{songartist}} in Songs van Ongs te plaatsen."></paper-checkbox>
+    <div id="buttons" class="submit" center-justified icon="arrow-forward" on-tap="{{submit}}">deze song toevoegen</div>
 
-    <core-animated-pages id="pages">
-    <section>
-    <p>Voeg jouw song toe aan Songs van Ongs. Je bezit wel de juiste toestemmingen of rechten. Een song laten verwijderen kan via @astadlabs.</p>
-    <core-field>
-      <paper-input placeholder="Titel" required flex value="{{songtitle}}"></paper-input>
-    </core-field>
-    <core-field>
-      <paper-input placeholder="Artiest" required flex value="{{songartist}}"></paper-input>
-    </core-field>
-    <core-field>
-      <!-- <paper-input placeholder="MP3 URL" required flex value="{{songurl}}"></paper-input> -->
+
+          
+<!--       
+<div class="inputfield" vertical layout center>
+      <input placeholder="Artiest" required value="{{songartist}}"></input>
+</div>
+      <div class="upload" >
       <file-upload imgval="{{songurl}}"></file-upload>
-    </core-field>
-    <core-field>
+</div>
+<div class="permission">
       <paper-checkbox id="check" required label="Ik heb toestemming van de uitvoerder om {{songtitle}} van {{songartist}} in Songs van Ongs te plaatsen."></paper-checkbox>
-    </core-field>
-    <core-field vertical layout>
-      <paper-button id="buttons" center-justified icon="arrow-forward" on-tap="{{submit}}">Toevoegen</paper-button>
-    </core-field>
-    </section>
-    <section>
+</div>
+    <div id="buttons" class="submit" center-justified icon="arrow-forward" on-tap="{{submit}}">Toevoegen </div>
+
+
+<div>
       <p>Jouw song werd toegevoegd aan Songs van Ongs.</p>
       <h1>{{songid}}</h1>
       <paper-button id="button" center-justified icon="arrow-forward" on-tap="{{newentry}}">Nog een song toevoegen</paper-button>
-    </section>
-    </core-animated-pages>
+</div> -->
+
+</div>
   </template>
   <script>
     (function () {
